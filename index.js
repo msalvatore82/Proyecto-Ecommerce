@@ -4,7 +4,7 @@ const PORT = 3000
 
 app.use(express.json())
 
-app.use("/clientes",require("./routes/clientes"));
+app.use("/clients",require("./routes/client"));
 // app.use("/productos", require("./routes/productos"))
 // app.use("/categorias", require("./routes/categorias"))
 // app.use("/pedidos", require("./routes/pedidos"))
