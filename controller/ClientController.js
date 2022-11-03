@@ -37,7 +37,8 @@ const ClientController = {
       }
       const token = jwt.sign({id:client.id}, jwt_secret);
         Token.create({token, ClientId: client.id});
-      res.send({msg: "Welcome to the jungle" + client.name, client, token});
+      res.send({msg: "Welcome to the jungle " + client.name, client, token});
+
     }).catch(err => {console.error(err)
     res.status(500).send(err)
     })
