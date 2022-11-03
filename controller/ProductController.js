@@ -12,6 +12,19 @@ async createProduct(req, res) {
       res.send(err);
     });
   },
+
+  async getAllProducts(req, res) {
+    try {
+      const products = await Product.findAll({
+        include: [{ model: Category, attributes: ["name"]}],
+      });
+      res.send({ msg: "Your products", products });
+    } catch (error) {
+      console.error(error);
+      res.status(500).send({ msg: "Error while getting products", error });
+    }
+  },
+
   async updateProductById(req, res) {
     try {
       await Product.update({name:req.body.name}, {
