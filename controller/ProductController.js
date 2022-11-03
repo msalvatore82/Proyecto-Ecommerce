@@ -1,5 +1,6 @@
-const { Product, Category} = require("../models/index.js");
-
+const client = require("../models/client.js");
+const { Product, Category, Sequelize} = require("../models/index.js");
+const {Op} = Sequelize
 
 const ProductController = {
 async createProduct(req, res) {
@@ -61,7 +62,56 @@ async createProduct(req, res) {
         res.send(err);
       });
   },
- 
+  async getProductByName(req, res) {
+    try {
+      const product = await Product.findOne({
+        where: {
+          name: {
+            [Op.like]: `%${req.params.name}%`,
+          },
+        },
+      });
+      res.send(product);
+    } catch (error) {
+      console.error(error);
+      res
+        .status(500)
+        .send({ msg: "your product no exist", error });
+    }
+  },
+  async getProductByPrice(req, res) {
+    try {
+      const product = await Product.findOne({
+        where: {
+          price: req.params.price
+          },
+        },
+      )
+      res.send(product);
+    } catch (error) {
+      console.error(error);
+      res
+        .status(500)
+        .send({ msg: "your product no exist", error });
+    }  
+  },
+
+  async productSortedByPrice(req, res) {
+    try {
+      const product = await Product.findAll({
+        order: [
+          ['price', 'ASC']
+      ]
+        },
+      )
+      res.send(product);
+    } catch (error) {
+      console.error(error);
+      res
+        .status(500)
+        .send({ msg: "your product no exist", error });
+    }  
+  }
 };
 
 module.exports = ProductController;

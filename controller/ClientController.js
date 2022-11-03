@@ -1,9 +1,7 @@
 const { Client, Token, Sequelize } = require("../models/index.js");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const client = require("../models/client.js");
 const {jwt_secret} = require("../config/config.json")["development"];
-const { Op } = Sequelize;
 
 
 const ClientController = {
