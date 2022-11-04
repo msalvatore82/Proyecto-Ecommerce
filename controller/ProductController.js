@@ -2,7 +2,7 @@ const { Product, Category, Sequelize} = require("../models/index.js");
 const {Op} = Sequelize
 
 const ProductController = {
-async createProduct(req, res,next) {
+async createProduct(req, res) {
   Product.create({ ...req.body })
     .then((product) => {
       res.status(201).send({ msg: "Product create ", product });
@@ -10,7 +10,7 @@ async createProduct(req, res,next) {
     .catch((error) => {
       console.error(err);
       res.send(err);
-      next(err)
+      
     });
   },
 

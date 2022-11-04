@@ -5,8 +5,8 @@ const CategoryController = {
       .then((product) => {
         res.status(201).send({ msg: "Category create ", Category });
       })
-      .catch((error) => {
-        console.error(err);
+      .catch((err) => {
+        console.err(err);
         res.send(err);
       });
   },
@@ -14,8 +14,8 @@ const CategoryController = {
     try {
       const category = await Category.findByPk(req.params.id);
       res.send(category);
-    } catch (error) {
-      console.error(err);
+    } catch (err) {
+      console.err(err);
       res.status(500).send({ msg: "your Category no exist", err });
     }
   },
@@ -28,9 +28,9 @@ const CategoryController = {
         },
     );
       res.send(category);
-    } catch (error) {
-      console.error(error);
-      res.status(500).send({ msg: "your category no exist", error });
+    } catch (err) {
+      console.err(err);
+      res.status(500).send({ msg: "your category no exist", err });
     }
   },
 
@@ -42,11 +42,11 @@ const CategoryController = {
         },
       });
       res.send({ msg: "successfully upgraded" });
-    } catch (error) {
-      console.error(err);
+    } catch (err) {
+      console.err(err);
       res
         .status(500)
-        .send({ msg: "There was an error updating the product.", err });
+        .send({ msg: "There was an err updating the product.", err });
     }
   },
   async destroyCategoryById(req, res) {
@@ -57,11 +57,11 @@ const CategoryController = {
         },
       });
       res.send({ msg: "Category successfully destroyed." });
-    } catch (error) {
-      console.error(err);
+    } catch (err) {
+      console.err(err);
       res
         .status(500)
-        .send({ msg: "There was an error destroying the category.", err });
+        .send({ msg: "There was an err destroying the category.", err });
     }
 
   },
@@ -71,9 +71,9 @@ const CategoryController = {
         include: [{ model: Product, attributes: ["name"]}],
       });
       res.send({ msg: "Your categorys", category });
-    } catch (error) {
-      console.error(error);
-      res.status(500).send({ msg: "Error while getting categorys", error });
+    } catch (err) {
+      console.err(err);
+      res.status(500).send({ msg: "err while getting categorys", err });
     }
   }
 };

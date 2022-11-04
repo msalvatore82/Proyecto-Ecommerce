@@ -8,8 +8,7 @@ async createOrders(req, res) {
       order.addProduct(req.body.ProductId)
       res.status(201).send({ msg: "Orders create ", order });
     })
-    .catch((error) => {
-      console.error(err);
+    .catch((err) => {
       res.send(err);
     });
   },

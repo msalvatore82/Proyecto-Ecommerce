@@ -69,17 +69,6 @@ const ClientController = {
         .send({ message: "hubo un problema al tratar de desconectarte" });
     }
   },
-  // async getAllClientAndOrder(req, res) {
-  //   try {
-  //     const client = await client.findAll({
-  //       include: [{ model: Product, attributes: ["name"]}],
-  //       include: [{ model: Order, attributes: ["Order"]}],
-  //     });
-  //     res.send({ msg: "Client", Client});
-  //   } catch (error) {
-  //     console.error(error);
-  //     res.status(500).send({ msg: "Error while getting categorys", error });
-  //   }
-  // }
+
 };
 module.exports = ClientController;
