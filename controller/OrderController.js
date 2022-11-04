@@ -12,6 +12,17 @@ async createOrders(req, res) {
       res.send(err);
     });
   },
+  async getOrder(req, res) {
+    try {
+      const Order = await Order.findAll({
+        include: [{ model: Category, Products, attributes: ["order"]}],
+      });
+      res.send({ msg: "Your order", Order });
+    } catch (error) {
+      console.error(error);
+      res.status(500).send({ msg: "Error while getting order", error });
+    }
+  },
 };
 
 module.exports = OrdersController;

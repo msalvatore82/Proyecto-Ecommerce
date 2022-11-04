@@ -6,6 +6,7 @@ const ProductController = {
 async createProduct(req, res) {
   Product.create({ ...req.body })
     .then((product) => {
+      product.addOrder(req.body.OrderId)
       res.status(201).send({ msg: "Product create ", product });
     })
     .catch((error) => {
@@ -17,7 +18,7 @@ async createProduct(req, res) {
   async getAllProducts(req, res) {
     try {
       const products = await Product.findAll({
-        include: [{ model: Category, attributes: ["name"]}],
+        include: [{ model: Category, Order, attributes: ["name,id"]}],
       });
       res.send({ msg: "Your products", products });
     } catch (error) {
