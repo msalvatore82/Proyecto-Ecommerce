@@ -1,17 +1,16 @@
-const client = require("../models/client.js");
 const { Product, Category, Sequelize} = require("../models/index.js");
 const {Op} = Sequelize
 
 const ProductController = {
-async createProduct(req, res) {
+async createProduct(req, res,next) {
   Product.create({ ...req.body })
     .then((product) => {
       product.addOrder(req.body.OrderId)
       res.status(201).send({ msg: "Product create ", product });
     })
-    .catch((error) => {
-      console.error(err);
+    .catch((err) => {
       res.send(err);
+      next(err)
     });
   },
 
@@ -21,8 +20,7 @@ async createProduct(req, res) {
         include: [{ model: Category, Order, attributes: ["name,id"]}],
       });
       res.send({ msg: "Your products", products });
-    } catch (error) {
-      console.error(error);
+    } catch (err) {
       res.status(500).send({ msg: "Error while getting products", error });
     }
   },
@@ -35,8 +33,7 @@ async createProduct(req, res) {
         },
       });
       res.send({ msg: "successfully upgraded" });
-    } catch (error) {
-      console.error(err);
+    } catch (err) {
       res
         .status(500)
         .send({ msg: "There was an error updating the product.", err });
@@ -50,8 +47,7 @@ async createProduct(req, res) {
         },
       });
       res.send({ msg: "Product successfully destroyed." });
-    } catch (error) {
-      console.error(err);
+    } catch (err) {
       res
         .status(500)
         .send({ msg: "There was an error destroying the product.", err });
@@ -61,8 +57,7 @@ async createProduct(req, res) {
     try {
       const product = await Product.findByPk(req.params.id);
       res.send(product);
-    } catch (error) {
-      console.error(err);
+    } catch (err) {
       res.status(500)
          .send({ msg: "your product no exist", err});
     }
@@ -72,7 +67,6 @@ async createProduct(req, res) {
     Product.findAll({ include: [Category] })
       .then((product) => res.send(product))
       .catch((err) => {
-        console.error(err);
         res.send(err);
       });
   },
@@ -86,8 +80,7 @@ async createProduct(req, res) {
         },
       });
       res.send(product);
-    } catch (error) {
-      console.error(error);
+    } catch (err) {
       res
         .status(500)
         .send({ msg: "your product no exist", error });
@@ -102,8 +95,7 @@ async createProduct(req, res) {
         },
       )
       res.send(product);
-    } catch (error) {
-      console.error(error);
+    } catch (err) {
       res
         .status(500)
         .send({ msg: "your product no exist", error });
@@ -119,8 +111,8 @@ async createProduct(req, res) {
         },
       )
       res.send(product);
-    } catch (error) {
-      console.error(error);
+    } catch (err) {
+      console.error(err);
       res
         .status(500)
         .send({ msg: "your product no exist", error });

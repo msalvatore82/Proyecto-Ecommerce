@@ -12,7 +12,7 @@ module.exports = {
       token: {
         type: Sequelize.STRING
       },
-      UserId: {
+      ClientId: {
         type: Sequelize.INTEGER
       },
       createdAt: {
