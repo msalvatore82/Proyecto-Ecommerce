@@ -1,6 +1,6 @@
 ### About us!
-![Matias](https://github.com/msalvatore82)
-![Daniela](https://github.com/DaniArango)
+
+![Daniela](https://github.com/DaniArango) - ![Matias](https://github.com/msalvatore82)
 
 ## Hey 👋, we are **Matias Salvatore Tadey**, and **Daniela Arango**.
 
