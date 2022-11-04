@@ -14,12 +14,25 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Client.init({
-    name: DataTypes.STRING,
-    email: DataTypes.STRING,
+    name: {
+      type: DataTypes.STRING,  
+      allowNull: false,
+      validate: {
+      notNull: { msg: "Por favor introduce tu nombre"},
+       }
+      },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+      notNull: {msg: "Por favor introduce tu correo"},
+      }
+    },
     password: DataTypes.STRING,
     tel: DataTypes.FLOAT,
     direction: DataTypes.STRING,
-    role: DataTypes.STRING
+    role: DataTypes.STRING,
+    confirmed: DataTypes.BOOLEAN
   }, {
     sequelize,
     modelName: 'Client',
