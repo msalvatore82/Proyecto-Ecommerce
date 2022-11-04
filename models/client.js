@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
     tel: DataTypes.FLOAT,
     direction: DataTypes.STRING,
     role: DataTypes.STRING,
-    confirmed: DataTypes.BOOLEAN
+    // confirmed: DataTypes.BOOLEAN
   }, {
     sequelize,
     modelName: 'Client',

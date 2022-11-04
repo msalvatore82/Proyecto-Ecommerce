@@ -1,4 +1,4 @@
-const { Client, Token, Sequelize } = require("../models/index.js");
+const { Client, Token, Sequelize, Order,Product } = require("../models/index.js");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { jwt_secret } = require("../config/config.json")["development"];
@@ -13,12 +13,49 @@ const ClientController = {
       .then((client) =>
         res.status(201).send({ msg: "Cliente creado con éxito", client })
       )
-      .catch(error =>{
-      console.error(error)
-      next(error)
-      });
-    
+      .catch(err =>{
+        res.send(err)
+      })
+      
   },
+  async getClientById(req, res) {
+    try {
+      const client = await Client.findByPk(req.params.id,{
+        include: [{ model: Order, attributes: ["order"], include: [{model: Product, attributes: ["name"] }]}]
+      });
+      res.send(client);
+    } catch (error) {
+      res.status(500)
+         .send({ msg: "The client doesn't exist", error});
+    }
+  },
+  // getClient(req, res) {
+  //   Client.findAll({ include: [Order] })
+  //     .then((client) => res.send(client))
+  //     .catch((err) => {
+  //       console.error(err);
+  //       res.send(err);
+  //     });
+  // },
+
+  // async getClientByName(req, res) {
+  //   try {
+  //     const client = await Client.findOne({
+  //       where: {
+  //         name: {
+  //           [Op.like]: `%${req.params.name}%`,
+  //         },
+  //       },
+  //     });
+  //     res.send(client);
+  //   } catch (error) {
+  //     console.error(error);
+  //     res
+  //       .status(500)
+  //       .send({ msg: "The client doesn't exist", error });
+  //   }
+  // },
+
   login(req, res) {
     Client.findOne({
       where: {
@@ -46,7 +83,6 @@ const ClientController = {
         });
       })
       .catch((err) => {
-        console.error(err);
         res.status(500).send(err);
       });
   },
