@@ -14,16 +14,6 @@ async createProduct(req, res, next) {
       
     });
   },
-  // async getAllProducts(req, res) {
-  //   try {
-  //     const products = await Product.findAll({
-  //       include: [{ model: Category, Order, attributes: ["name,id"]}],
-  //     });
-  //     res.send({ msg: "Your products", products });
-  //   } catch (err) {
-  //     res.status(500).send({ msg: "Error while getting products", err });
-  //   }
-  // },
 
   async updateProductById(req, res) {
     try {
