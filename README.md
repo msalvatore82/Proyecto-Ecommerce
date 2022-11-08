@@ -1,14 +1,58 @@
-### About us!
+### About Me!
 
-[Daniela](https://github.com/DaniArango) 🧙‍♀️ - [Matias](https://github.com/msalvatore82) 🧑‍🦲
+[Matias](https://github.com/msalvatore82) 🧑‍🦲
 
-## Hey 👋, we are **Matias Salvatore Tadey**, and **Daniela Arango**.
+## Hey 👋, i am **Matias Salvatore Tadey**
 
 ### About the project:
 In the backend project we will combine the node + express technologies, in addition to mysql/sequelize and Javascript development.
 Technologies for the development of the API we will use mysql with Sequelize and express.
 
-## Requirements:
+## 🚧 Made a REST API for the following: 
+- User registration using Bcrypt.
+- User login + token + middleware.
+- CRUD of the endpoints.
+- "Many to Many" and other "One to Many" database relationships.
+- Use of seeders.
+
+## 👥 Pair Programming 
+For collaboration in Pair Programming we use branches with GitHub, making commits in each evolution of the project.
+
+## 🦾 Used technology 
+- MySql2 with Sequelize and Express
+- Bcrypt + JWT
+- Express Validator
+- Nodemon (Dev Dependency)
+- Postman
+- Workbench
+- VsCode
+- Git / GitHub
+
+# 📋 Pre requirements
+
+1 - In order to start the project first make a clone:
+
+> git clone https://github.com/msalvatore82/Proyecto-Backend.git
+
+2 - Once the project is cloned, you must install the necessary modules with npm:
+> npm install
+
+3 - You should rename the "config-example.json" file to "config.json" 
+> Then edit the "development" fields with your "name", "password", "db name" and "secret word".
+
+4 - Create Database
+> sequelize db:create
+
+5 - Database Migration
+> sequelize db:migrate
+
+6 - Running the Seeder
+> sequelize db:seed:all
+
+7 - The project is ready to start
+> npm start
+
+
 ### Endpoints
 #### Products
 -CRUD products
